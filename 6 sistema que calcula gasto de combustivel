@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+class Carro {
+    private String marca;
+    private double consumoKmPorLitro;
+    private double combustivelNoTanque;
+
+    public Carro(String marca, double consumo, double combustivelInicial) {
+        this.marca = marca;
+        this.consumoKmPorLitro = consumo;
+        this.combustivelNoTanque = combustivelInicial;
+    }
+
+    public void simularViagem(double km) {
+        double litrosNecessarios = km / consumoKmPorLitro;
+        if (litrosNecessarios <= combustivelNoTanque) {
+            combustivelNoTanque -= litrosNecessarios;
+            System.out.println("Viagem de " + km + "km realizada.");
+        } else {
+            System.out.println("Combustível insuficiente!");
+        }
+    }
+
+    public void abastecer(double litros) {
+        this.combustivelNoTanque += litros;
+    }
+
+    public double calcularAutonomia() {
+        return combustivelNoTanque * consumoKmPorLitro;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Carro meuCarro = new Carro("Honda", 12.0, 50.0);
+        
+        System.out.println("Autonomia atual: " + meuCarro.calcularAutonomia() + " km");
+        meuCarro.simularViagem(120); // Rodou 120km
+        System.out.println("Autonomia após viagem: " + meuCarro.calcularAutonomia() + " km");
+    }
+}
