@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+class ContaEnergia {
+    private double consumoKwh;
+    private double valorPorKwh;
+
+    public ContaEnergia(double consumoKwh, double valorPorKwh) {
+        this.consumoKwh = consumoKwh;
+        this.valorPorKwh = valorPorKwh;
+    }
+
+    public double calcularTotal() {
+        return consumoKwh * valorPorKwh;
+    }
+
+    public double calcularComDesconto(double porcentagem) {
+        return calcularTotal() * (1 - (porcentagem / 100));
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.print("Consumo do mês (kWh): ");
+        double consumo = leitor.nextDouble();
+        System.out.print("Valor do kWh: R$ ");
+        double preco = leitor.nextDouble();
+
+        ContaEnergia conta = new ContaEnergia(consumo, preco);
+
+        System.out.println("\n Detalhes da Conta ");
+        System.out.println("Valor Bruto: R$ " + conta.calcularTotal());
+        
+      
+        System.out.println("Valor com 15% de desconto: R$ " + conta.calcularComDesconto(15));
+
+        leitor.close();
+    }
+}
