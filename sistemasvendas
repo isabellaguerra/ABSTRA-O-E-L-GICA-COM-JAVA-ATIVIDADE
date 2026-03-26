@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+class Vendedor {
+    private String nome;
+    private double totalVendas;
+    private double percentualComissao;
+
+    public Vendedor(String nome, double totalVendas, double percentualComissao) {
+        this.nome = nome;
+        this.totalVendas = totalVendas;
+        this.percentualComissao = percentualComissao;
+    }
+
+    public double calcularComissao() {
+        return totalVendas * (percentualComissao / 100);
+    }
+
+    public double calcularSalarioFinal(double salarioBase) {
+        return salarioBase + calcularComissao();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        
+        System.out.print("Nome do vendedor: ");
+        String nome = leitor.nextLine();
+        System.out.print("Salário Base: R$ ");
+        double base = leitor.nextDouble();
+        System.out.print("Total de vendas no mês: R$ ");
+        double vendas = leitor.nextDouble();
+        System.out.print("Percentual de comissão (ex: 10): ");
+        double comissao = leitor.nextDouble();
+
+        Vendedor v = new Vendedor(nome, vendas, comissao);
+
+        System.out.println("\n--- Folha de Pagamento ---");
+        System.out.println("Vendedor: " + nome);
+        System.out.println("Comissão: R$ " + v.calcularComissao());
+        System.out.println("Salário Total: R$ " + v.calcularSalarioFinal(base));
+        
+        leitor.close();
+    }
+}
