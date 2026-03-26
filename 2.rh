@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+class Funcionario {
+    private String nome;
+    private double salario;
+
+    public Funcionario(String nome, double salarioInicial) {
+        this.nome = nome;
+        this.salario = salarioInicial;
+    }
+
+    public void aplicarAumento(double porcentagem) {
+        this.salario += this.salario * (porcentagem / 100);
+    }
+
+    public double calcularSalarioAnual() {
+        return this.salario * 12;
+    }
+
+    public double getSalario() { return salario; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        System.out.print("Nome do funcionário: ");
+        String nome = leitor.nextLine();
+        System.out.print("Salário mensal: ");
+        double sal = leitor.nextDouble();
+
+        Funcionario f = new Funcionario(nome, sal);
+        
+        System.out.print("Digite a porcentagem de aumento: ");
+        f.aplicarAumento(leitor.nextDouble());
+
+        System.out.println("Novo salário mensal: R$ " + f.getSalario());
+        System.out.println("Salário anual (com aumento): R$ " + f.calcularSalarioAnual());
+        leitor.close();
+    }
+}
