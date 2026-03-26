@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+class Produto {
+    private String nome;
+    private double preco;
+    private int quantidade;
+
+    public Produto(String nome, double preco, int qtd) {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = qtd;
+    }
+
+    public double calcularValorTotalEstoque() {
+        return preco * quantidade;
+    }
+
+    public void entradaEstoque(int qtd) { this.quantidade += qtd; }
+    public void saidaEstoque(int qtd) { this.quantidade -= qtd; }
+    public int getQuantidade() { return quantidade; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Produto p = new Produto("Teclado Mecânico", 150.0, 10);
+        System.out.println("Valor total em estoque: R$ " + p.calcularValorTotalEstoque());
+        
+        p.entradaEstoque(5); // Chegaram 5 produtos
+        System.out.println("Nova quantidade: " + p.getQuantidade());
+        System.out.println("Novo valor total: R$ " + p.calcularValorTotalEstoque());
+    }
+}
