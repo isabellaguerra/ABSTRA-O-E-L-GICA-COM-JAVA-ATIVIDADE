@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+class Viagem {
+    private double distancia;
+    private double consumoCarro; // km/l
+    private double precoCombustivel;
+
+    public Viagem(double dist, double cons, double preco) {
+        this.distancia = dist;
+        this.consumoCarro = cons;
+        this.precoCombustivel = preco;
+    }
+
+    public double calcularLitros() {
+        return distancia / consumoCarro;
+    }
+
+    public double calcularCustoTotal() {
+        return calcularLitros() * precoCombustivel;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.print("Distância da viagem (km): ");
+        double d = leitor.nextDouble();
+        System.out.print("Consumo do carro (km/l): ");
+        double c = leitor.nextDouble();
+        System.out.print("Preço do combustível: R$ ");
+        double p = leitor.nextDouble();
+
+        Viagem v = new Viagem(d, c, p);
+
+   
+        System.out.println("Combustível necessário: " + v.calcularLitros() + " litros");
+        System.out.println("Custo total estimado: R$ " + v.calcularCustoTotal());
+
+        leitor.close();
+    }
+}
