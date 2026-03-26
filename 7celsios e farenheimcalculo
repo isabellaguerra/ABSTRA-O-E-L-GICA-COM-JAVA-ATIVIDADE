@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+class Temperatura {
+    private double celsius;
+
+  
+    public Temperatura(double celsius) {
+        this.celsius = celsius;
+    }
+
+    public double paraFahrenheit() {
+        return (celsius * 1.8) + 32;
+    }
+
+    public double paraKelvin() {
+        return celsius + 273.15;
+    }
+
+    public double getCelsius() {
+        return celsius;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.println("Conversor Meteorológico");
+        System.out.print("Digite a temperatura em Celsius (°C): ");
+        double valorDigitado = leitor.nextDouble();
+
+        // Criando o objeto com o valor informado
+        Temperatura temp = new Temperatura(valorDigitado);
+
+        // Exibindo os resultados
+        System.out.println("\n resultado");
+       System.out.println("Celsius: " + temp.getCelsius() + " °C");
+        System.out.println("Fahrenheit: " + temp.paraFahrenheit() + " °F");
+        System.out.println("Kelvin: " + temp.paraKelvin() + " K");
+        leitor.close();
+    }
+}
